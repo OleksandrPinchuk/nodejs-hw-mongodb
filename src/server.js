@@ -4,8 +4,6 @@ import pino from "pino-http";
 import { env } from "./utils/env.js";
 import * as contactServices from "./services/contacts.js";
 
-console.log(process.env.PORT);
-
 export const setupServer = () => {
     const app = express();
 
@@ -27,33 +25,32 @@ export const setupServer = () => {
         })
     });
 
+    app.get("/contacts/:id", async (req, res) => {
+        const { id } = req.params;
+        const data = await contactServices.getContactById(id);
 
-    // app.get("/movies/:id", async (request, response) => {
-    //     const { id } = request.params;
-    //     const data = await movieServices.getMovieById(id);
-        
-    //     if (!data) {
-    //         return response.status(404).json({
-    //             status: 404,
-    //             message: `Movie with id=${id} not found`,
-    //         });
-    // }
+        if (!data) {
+            return res.status(404).json({
+                status: 404,
+                message: `Movie with id=${id} not found`,
+            })
+        };
 
-    //     response.json({
-    //         status: 200,
-    //         message: "Movie successfully find",
-    //         data,
-    //     });
-    // });
+        res.json({
+            status: 200,
+            message: "Contact successfully find",
+            data,
+        })
+    });
 
-    app.use((request, response) => {
-        response.status(404).json({
-            message: `${request.url} not`
+    app.use((req, res) => {
+        res.status(404).json({
+            message: `${req.url} not`
         });
     });
 
-    app.use((error, request, response, next) => {
-        response.status(500).json({
+    app.use((error, req, res, next) => {
+        res.status(500).json({
             message: error.message,
         });
     });
