@@ -25,27 +25,27 @@ export const setupServer = () => {
         })
     });
 
-    app.get("/contacts/:id", async (req, res) => {
-        const { id } = req.params;
-        const data = await contactServices.getContactById(id);
+    app.get("/contacts/:contactId", async (req, res) => {
+        const { contactId } = req.params;
+        const data = await contactServices.getContactById(contactId);
 
         if (!data) {
             return res.status(404).json({
                 status: 404,
-                message: `Movie with id=${id} not found`,
+                message: `Contact with id=${contactId} not found`,
             })
         };
 
         res.json({
             status: 200,
-            message: "Contact successfully find",
+            message: `Successfully found contact with id ${contactId}!`,
             data,
         })
     });
 
-    app.use((req, res) => {
+    app.use('*', (req, res) => {
         res.status(404).json({
-            message: `${req.url} not`
+            message: `${req.url} not found`
         });
     });
 
@@ -57,5 +57,5 @@ export const setupServer = () => {
     
     const port = Number(env("PORT", 3001));
 
-    app.listen(port, () => console.log(`Server running on ${port} port`));
+    app.listen(port, () => console.log(`Server is running on port ${port}`));
 };
