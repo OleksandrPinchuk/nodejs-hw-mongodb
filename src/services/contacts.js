@@ -9,9 +9,9 @@ export const createContact = async (payload) => {
     return contact;
 };
 
-export const updateContact = async (contactId, payload, options = {}) => {
-    const rawResult = await ContactsCollection.findOneAndUpdate({ _id: contactId }, payload,
-        { new: true, includeResultMetadata: true, ...options });
+export const updateContact = async ({ _id, payload, options = {} }) => {
+    const rawResult = await ContactsCollection.findOneAndUpdate({ _id }, payload,
+        { ...options, new: true, includeResultMetadata: true,  });
     
     if (!rawResult || !rawResult.value) return null;
 
