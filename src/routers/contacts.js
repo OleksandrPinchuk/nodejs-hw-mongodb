@@ -14,16 +14,16 @@ import { contactsAddSchema, contactUpdateSchema } from "../validation/contacts.j
 
 const router = Router();
 
-router.get("/contacts", ctrlWrapper(getContactsController));
+router.get("/", ctrlWrapper(getContactsController));
 
-router.get("/contacts/:contactId", isValidId, ctrlWrapper(getContactsByIdController));
+router.get("/:contactId", isValidId, ctrlWrapper(getContactsByIdController));
 
 router.post("/contacts", validateBody(contactsAddSchema), ctrlWrapper(createContactController));
 
-router.put("/contacts/:contactId", isValidId, validateBody(contactsAddSchema), ctrlWrapper(upsertContactController));
+router.put("/:contactId", isValidId, validateBody(contactsAddSchema), ctrlWrapper(upsertContactController));
 
-router.patch("/contacts/:contactId", isValidId, validateBody(contactUpdateSchema), ctrlWrapper(patchContactController));
+router.patch("/:contactId", isValidId, validateBody(contactUpdateSchema), ctrlWrapper(patchContactController));
 
-router.delete("/contacts/:contactId", isValidId, ctrlWrapper(deleteContactController));
+router.delete("/:contactId", isValidId, ctrlWrapper(deleteContactController));
 
 export default router;
