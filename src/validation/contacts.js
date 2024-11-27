@@ -12,7 +12,6 @@ export const contactsAddSchema = Joi.object({
     email: Joi.string().min(3).max(30),
     isFavourite: Joi.boolean(),
     contactType: Joi.string().valid(...typeList).required(),
-    userId: Joi.string().required(),
 });
 
 export const contactUpdateSchema = Joi.object({

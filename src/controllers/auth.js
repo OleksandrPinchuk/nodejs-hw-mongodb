@@ -1,17 +1,16 @@
-import { ONE_DAY } from "../constants/index.js";
+import { ONE_MONTH } from "../constants/index.js";
 import { loginUser, logoutUser, refreshUsersSession, registerUser } from "../services/auth.js"
 
 
 const setupSession = (res, session) => {
-
     res.cookie("refreshToken", session.refreshToken, {
         httpOnly: true,
-        expires: new Date(Date.now() + ONE_DAY),
+        expires: new Date(Date.now() + ONE_MONTH),
     });
 
     res.cookie("sessionId", session._id, {
         httpOnly: true,
-        expires: new Date(Date.now() + ONE_DAY),
+        expires: new Date(Date.now() + ONE_MONTH),
     });
 };
 
@@ -30,14 +29,6 @@ export const loginUserController = async (req, res) => {
 
     setupSession(res, session);
 
-    // res.cookie("refreshToken", session.refreshToken, {
-    //     httpOnly: true,
-    //     expires: new Date(Date.now() + ONE_DAY),
-    // });
-    // res.cookie("sessionId", session._id, {
-    //     httpOnly: true,
-    //     expires: new Date(Date.now() + ONE_DAY),
-    // });
     res.json({
         status: 200,
         message: "Successfully logged in an user!",
