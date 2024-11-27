@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { typeList } from '../../constants/contacts.js';
 
-const contactSchema = new mongoose.Schema({
+const contactSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -24,6 +24,10 @@ const contactSchema = new mongoose.Schema({
         required: true,
         default: 'personal',
     },
+    userId: { 
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    },
 },
     {
         timestamps: true, 
@@ -31,6 +35,6 @@ const contactSchema = new mongoose.Schema({
     }
 );
 
-const ContactsCollection = mongoose.model('contacts', contactSchema);
+const ContactsCollection = model('contacts', contactSchema);
 
 export default ContactsCollection;
