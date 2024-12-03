@@ -6,9 +6,9 @@ import {
     loginUserController,
     logoutUserController,
     refreshUserSessionController,
-    registerUserController
+    registerUserController,
+    requestResetEmailController
 } from "../controllers/auth.js";
-import { requestResetEmailController } from "../controllers/contacts.js";
 
 const router = Router();
 

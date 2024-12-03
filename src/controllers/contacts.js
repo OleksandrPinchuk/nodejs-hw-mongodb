@@ -3,7 +3,6 @@ import { createContact, deleteContact, getContactById, getContacts, updateContac
 import { parsePaginationParams } from "../utils/parsePaginationParams.js";
 import { parseSortParams } from "../utils/parseSortParams.js";
 import { parseFilterParams } from "../utils/parseFilterParams.js";
-import { requestResetToken } from "../services/auth.js";
 
 export const getContactsController = async (req, res) => {
     const { page, perPage } = parsePaginationParams(req.query);
@@ -92,13 +91,4 @@ export const deleteContactController = async (req, res) => {
     }
     
     res.status(204).send();
-};
-
-export const requestResetEmailController = async (req, res) => {
-    await requestResetToken(req.body.email);
-    res.json({
-        message: "Reset password email was successfully sent!",
-        status: 200,
-        data: {},
-    });
 };
