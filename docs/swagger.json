@@ -11,10 +11,10 @@
   },
   "servers": [
     {
-      "url": "https://swagger-rest-api.onrender.com"
+      "url": "http://localhost:3000"
     },
     {
-      "url": "http://localhost:3000"
+      "url": "https://nodejs-hw-mongodb-xqdu.onrender.com"
     }
   ],
   "tags": [
@@ -46,9 +46,9 @@
             "in": "query",
             "name": "page",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "example": 1
             },
-            "example": 1,
             "description": "Page number for pagination"
           },
           {
@@ -56,9 +56,9 @@
             "name": "perPage",
             "schema": {
               "type": "integer",
-              "example": 10,
-              "description": "Number of contacts per page"
-            }
+              "example": 10
+            },
+            "description": "Number of contacts per page"
           },
           {
             "in": "query",
@@ -203,43 +203,43 @@
                 ],
                 "properties": {
                   "name": {
+                    "description": "Contact's name",
                     "type": "string",
                     "minLength": 3,
                     "maxLength": 30,
-                    "example": "John Doe",
-                    "description": "Contact's name"
+                    "example": "John Doe"
                   },
                   "phoneNumber": {
+                    "description": "Contact's phone number",
                     "type": "string",
                     "minLength": 3,
                     "maxLength": 30,
-                    "example": "+38 000 000 00 00",
-                    "description": "Contact's phone number"
+                    "example": "+38 000 000 00 00"
                   },
                   "email": {
+                    "description": "Contact's email address",
                     "type": "string",
-                    "example": "john@example.com",
-                    "description": "Contact's email address"
+                    "example": "john@example.com"
                   },
                   "isFavourite": {
+                    "description": "Indicates if the contact is marked as favourite",
                     "type": "boolean",
-                    "example": true,
-                    "description": "Indicates if the contact is marked as favourite"
+                    "example": true
                   },
                   "contactType": {
+                    "description": "Type of contact",
                     "type": "string",
                     "enum": [
                       "work",
                       "home",
                       "personal"
                     ],
-                    "example": "work",
-                    "description": "Type of contact"
+                    "example": "work"
                   },
                   "photo": {
+                    "description": "Contact's photo",
                     "type": "string",
-                    "format": "binary",
-                    "description": "URL to the contact's photo"
+                    "format": "binary"
                   }
                 }
               }
